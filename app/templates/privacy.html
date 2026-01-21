@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-20 bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8 lg:p-12">
+            <h1 class="text-4xl font-bold text-slate-900 mb-4">Privacy Policy</h1>
+            <p class="text-sm text-slate-500 mb-8">Last Updated: January 2025 | Version 1.0</p>
+            
+            <div class="prose prose-slate max-w-none">
+                <p class="text-lg text-slate-700 mb-6">OccupancyOS ("we", "us", "our") respects your privacy. This Privacy Policy explains how we collect, use, disclose, and protect your information when you use our Service.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">1. Information We Collect</h2>
+                
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">1.1 Account Information</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Email address:</strong> Used for account creation, authentication, and communications.</li>
+                    <li><strong>Password:</strong> Stored in encrypted form via Supabase authentication.</li>
+                    <li><strong>IP address:</strong> Collected at signup and during usage for security and fraud prevention.</li>
+                    <li><strong>Timestamp:</strong> Date and time of account creation and TOS acceptance.</li>
+                    <li><strong>TOS version:</strong> Version of Terms of Service you accepted.</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">1.2 Listing Data</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Property titles and descriptions you submit for AI analysis.</li>
+                    <li>Property type and target audience selections.</li>
+                    <li>Amenity selections and preferences.</li>
+                    <li>Audit scores, recommendations, and analysis results.</li>
+                    <li>AI-generated content we produce for you.</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">1.3 Payment Information</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>License keys purchased through Gumroad.</li>
+                    <li>Transaction IDs and purchase timestamps.</li>
+                    <li>Credit/audit usage history.</li>
+                    <li><strong>Note:</strong> We do NOT store credit card numbers. Payments are processed by Gumroad.</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">1.4 Usage Data</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Pages visited and features used.</li>
+                    <li>Browser type, version, and operating system.</li>
+                    <li>Device information (type, screen resolution, etc.).</li>
+                    <li>Referral source (how you found our Service).</li>
+                    <li>Time and date of visits and actions.</li>
+                    <li>Session duration and interaction patterns.</li>
+                    <li>Error logs and debugging information.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">2. How We Use Your Information</h2>
+                <p>We use collected information for the following purposes:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>To provide the Service:</strong> Process AI analysis requests, manage accounts, and deliver features.</li>
+                    <li><strong>To improve the Service:</strong> Analyze usage patterns, identify bugs, and optimize performance.</li>
+                    <li><strong>To train AI models:</strong> Your listing data may be used to improve our AI algorithms and recommendations.</li>
+                    <li><strong>For authentication and security:</strong> Verify identity, prevent fraud, and protect against abuse.</li>
+                    <li><strong>For customer support:</strong> Respond to inquiries and troubleshoot issues.</li>
+                    <li><strong>For analytics:</strong> Understand user behavior and Service performance.</li>
+                    <li><strong>For marketing:</strong> Send promotional emails, feature announcements, and updates (you may opt out).</li>
+                    <li><strong>For legal compliance:</strong> Comply with laws, regulations, and legal processes.</li>
+                    <li><strong>To enforce Terms:</strong> Detect violations and enforce our Terms of Service.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">3. Data Sharing and Disclosure</h2>
+                <p><strong>We may share your information with:</strong></p>
+                
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">3.1 Third-Party Service Providers</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Supabase:</strong> Database hosting and authentication (stores all user data).</li>
+                    <li><strong>Groq:</strong> AI processing (listing content is sent to Groq for analysis).</li>
+                    <li><strong>Gumroad:</strong> Payment processing and license key verification.</li>
+                    <li><strong>Vercel:</strong> Web hosting and infrastructure (if applicable).</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">3.2 Legal Authorities</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>When required by law, subpoena, or court order.</li>
+                    <li>To protect our rights, property, or safety.</li>
+                    <li>To investigate fraud, abuse, or violations of our Terms.</li>
+                    <li>To comply with legal obligations or government requests.</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">3.3 Business Transfers</h3>
+                <p>In the event of a merger, acquisition, sale of assets, or bankruptcy, your information may be transferred to the acquiring entity.</p>
+
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">3.4 Aggregated/Anonymous Data</h3>
+                <p>We may share aggregated, de-identified, or anonymous data that cannot reasonably be used to identify you for research, marketing, or other purposes.</p>
+
+                <p class="mt-4 font-semibold text-slate-900">WE DO NOT SELL YOUR PERSONAL INFORMATION TO THIRD PARTIES FOR MARKETING PURPOSES.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">4. AI Processing and Third-Party Risks</h2>
+                <p>When you submit listing content for analysis, it is transmitted to Groq's API for AI processing. While we use secure HTTPS connections:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>We cannot guarantee the security of data once it leaves our servers.</li>
+                    <li>Groq may retain copies of requests for their own purposes (subject to their privacy policy).</li>
+                    <li>AI providers may use your data to improve their models.</li>
+                    <li>Third-party services have their own privacy policies which you should review.</li>
+                </ul>
+                <p class="mt-2 font-semibold text-red-700">⚠️ Do not submit sensitive, confidential, or personally identifiable information in listing content.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">5. Data Retention</h2>
+                <p>We retain your data according to the following schedule:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Active accounts:</strong> Data is retained indefinitely while your account is active.</li>
+                    <li><strong>Deleted accounts:</strong> We may retain certain data for up to 90 days, or longer if required by law.</li>
+                    <li><strong>Legal compliance:</strong> Data may be retained longer to comply with legal obligations, resolve disputes, or enforce agreements.</li>
+                    <li><strong>Backups:</strong> Data in backups may persist beyond deletion for up to 30 days.</li>
+                    <li><strong>Audit logs:</strong> Access logs and security records may be retained for up to 1 year.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">6. Cookies and Tracking Technologies</h2>
+                <p>We use cookies and similar technologies for:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Authentication:</strong> Keeping you logged in (session cookies).</li>
+                    <li><strong>Preferences:</strong> Remembering your settings and choices.</li>
+                    <li><strong>Analytics:</strong> Understanding how users interact with the Service.</li>
+                    <li><strong>Security:</strong> Detecting and preventing fraud.</li>
+                </ul>
+                <p class="mt-2">You can disable cookies in your browser, but this may limit Service functionality.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">7. Your Rights (Jurisdiction-Dependent)</h2>
+                <p>Depending on your location, you may have the following rights:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Access:</strong> Request a copy of your personal data.</li>
+                    <li><strong>Correction:</strong> Request correction of inaccurate data.</li>
+                    <li><strong>Deletion:</strong> Request deletion of your data (subject to legal retention requirements).</li>
+                    <li><strong>Portability:</strong> Request export of your data in a machine-readable format.</li>
+                    <li><strong>Objection:</strong> Object to certain data processing activities.</li>
+                    <li><strong>Opt-out:</strong> Unsubscribe from marketing emails.</li>
+                </ul>
+                <p class="mt-4">To exercise these rights, contact us at <a href="mailto:privacy@occupancyos.com" class="text-indigo-600 hover:text-indigo-700 underline">privacy@occupancyos.com</a></p>
+                <p class="mt-2 text-sm text-slate-600"><strong>Note:</strong> We may require identity verification before fulfilling requests. We are not obligated to honor requests if prohibited by law or necessary for legal compliance.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">8. Data Security</h2>
+                <p>We implement reasonable technical and organizational security measures, including:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Encrypted password storage (via Supabase).</li>
+                    <li>HTTPS/TLS encryption for data transmission.</li>
+                    <li>Role-based access controls.</li>
+                    <li>Regular security monitoring and updates.</li>
+                </ul>
+                <p class="mt-4 font-semibold text-red-700">⚠️ HOWEVER, NO SYSTEM IS 100% SECURE. We cannot guarantee absolute security of your data. You use the Service at your own risk.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">9. Children's Privacy</h2>
+                <p>Our Service is not intended for users under 18 years of age. We do not knowingly collect personal information from children. If we become aware that a user is under 18, we will delete their account and data.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">10. International Data Transfers</h2>
+                <p>Your data may be transferred to and stored on servers located in the United States and other countries. By using the Service, you consent to such transfers. Data protection laws in these countries may differ from those in your jurisdiction.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">11. California Privacy Rights (CCPA)</h2>
+                <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Right to know what personal information we collect and how it's used.</li>
+                    <li>Right to delete personal information (subject to exceptions).</li>
+                    <li>Right to opt-out of the "sale" of personal information (we do not sell personal information).</li>
+                    <li>Right to non-discrimination for exercising your rights.</li>
+                </ul>
+                <p class="mt-2">To exercise these rights, email <a href="mailto:privacy@occupancyos.com" class="text-indigo-600 hover:text-indigo-700 underline">privacy@occupancyos.com</a> with "CCPA Request" in the subject line.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">12. European Privacy Rights (GDPR)</h2>
+                <p>If you are in the European Economic Area (EEA), UK, or Switzerland, you have rights under the General Data Protection Regulation (GDPR):</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Right to access, rectify, erase, restrict, and port your data.</li>
+                    <li>Right to object to processing and withdraw consent.</li>
+                    <li>Right to lodge a complaint with a supervisory authority.</li>
+                </ul>
+                <p class="mt-2"><strong>Legal basis for processing:</strong> Consent, contract performance, legitimate interests, and legal obligations.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">13. Changes to This Privacy Policy</h2>
+                <p>We reserve the right to modify this Privacy Policy at any time, for any reason, with or without notice. Changes are effective immediately upon posting. Your continued use of the Service after changes constitutes acceptance of the updated Privacy Policy.</p>
+                <p class="mt-2 font-semibold text-slate-900">It is your responsibility to review this Privacy Policy periodically.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">14. Do Not Track (DNT)</h2>
+                <p>We do not currently respond to "Do Not Track" browser signals.</p>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-8 mb-4">15. Contact Information</h2>
+                <p>For privacy-related questions, requests, or concerns, contact us at:</p>
+                <p class="mt-2"><strong>Email:</strong> <a href="mailto:privacy@occupancyos.com" class="text-indigo-600 hover:text-indigo-700 underline">privacy@occupancyos.com</a></p>
+                <p class="mt-2 text-sm text-slate-600">We will make reasonable efforts to respond within 30 days, but response is not guaranteed.</p>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-8">
+                    <p class="text-blue-800 font-semibold">📘 By using OccupancyOS, you acknowledge that you have read and understood this Privacy Policy and consent to the collection, use, and disclosure of your information as described herein.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

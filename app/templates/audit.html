@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Debug Info -->
+
+<section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+                Free Airbnb Listing Audit Tool
+            </h1>
+            <p class="text-xl text-slate-600">
+                Get AI-powered optimization recommendations in 30 seconds. Zero cost. Zero commitment.
+            </p>
+            
+            <!-- Credits Display for Logged-in Users -->
+            {% if user and audits_remaining is not none %}
+            <div class="mt-6 inline-flex items-center bg-indigo-50 border-2 border-indigo-200 px-6 py-3 rounded-lg">
+                <svg class="w-5 h-5 text-indigo-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                <span class="text-indigo-900 font-semibold">
+                    <span id="credits-display">{{ audits_remaining }}</span> Audit{{ 's' if audits_remaining != 1 else '' }} Remaining
+                </span>
+                {% if audits_remaining == 0 %}
+                <a href="{{ gumroad_url }}" target="_blank" class="ml-4 text-indigo-600 hover:text-indigo-700 font-semibold text-sm underline">
+                    Buy More Credits
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Audit Form -->
+        <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 mb-8">
+            <form id="audit-form" class="space-y-6">
+                <!-- Current Title -->
+                <div>
+                    <label for="title" class="block text-sm font-semibold text-slate-700 mb-2">
+                        Current Airbnb Title <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        required
+                        placeholder="e.g., Cozy Downtown Apartment with Great View"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                    >
+                    <p class="mt-1 text-sm text-slate-500">Copy exactly as it appears on Airbnb</p>
+                </div>
+
+                <!-- Current Description -->
+                <div>
+                    <label for="description" class="block text-sm font-semibold text-slate-700 mb-2">
+                        Current Description <span class="text-red-500">*</span>
+                    </label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        required
+                        rows="6"
+                        placeholder="Paste your full Airbnb description here..."
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                    ></textarea>
+                    <p class="mt-1 text-sm text-slate-500">The complete text from your listing</p>
+                </div>
+
+                <!-- Property Type -->
+                <div>
+                    <label for="property_type" class="block text-sm font-semibold text-slate-700 mb-2">
+                        Property Type <span class="text-red-500">*</span>
+                    </label>
+                    <select 
+                        id="property_type" 
+                        name="property_type" 
+                        required
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                    >
+                        <option value="" disabled selected>Select a property type</option>
+                        <option value="Apartment">Apartment / Condo</option>
+                        <option value="House">Entire House</option>
+                        <option value="Cabin">Cabin / Cottage</option>
+                        <option value="Villa">Villa / Luxury Home</option>
+                        <option value="Loft">Loft / Studio</option>
+                        <option value="Townhouse">Townhouse</option>
+                        <option value="Tiny House">Tiny House</option>
+                        <option value="Beachfront">Beachfront Property</option>
+                    </select>
+                </div>
+
+                <!-- Target Audience -->
+                <div>
+                    <label for="target_audience" class="block text-sm font-semibold text-slate-700 mb-2">
+                        Primary Target Audience
+                    </label>
+                    <select 
+                        id="target_audience" 
+                        name="target_audience"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                    >
+                        <option value="All Audiences" selected>All Audiences (General)</option>
+                        <option value="Remote Workers">Remote Workers / Digital Nomads</option>
+                        <option value="Families">Families with Children</option>
+                        <option value="Business Travelers">Business Travelers</option>
+                        <option value="Adventure Seekers">Adventure Seekers</option>
+                        <option value="Retirees">Retirees / Seniors</option>
+                        <option value="Large Groups">Large Groups / Events</option>
+                        <option value="Pet Owners">Pet Owners</option>
+                    </select>
+                    <p class="mt-1 text-sm text-slate-500">Optional: Leave as "All Audiences" if targeting everyone</p>
+                </div>
+
+                <!-- Amenities -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-3">
+                        Current Amenities <span class="text-slate-500 font-normal">(optional - check all that apply)</span>
+                    </label>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="WiFi" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">High-Speed WiFi</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Kitchen" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Full Kitchen</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Parking" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Free Parking</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Workspace" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Dedicated Workspace</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Pool" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Pool</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Hot Tub" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Hot Tub</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Washer" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Washer/Dryer</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="AC" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Air Conditioning</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Pets" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Pet-Friendly</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Smart TV" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Smart TV</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Coffee Maker" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Coffee Maker</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" name="amenity" value="Smart Lock" class="amenity-checkbox rounded text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-slate-700">Smart Lock</span>
+                        </label>
+                    </div>
+                    <p class="mt-2 text-sm text-slate-500">💡 Leave unchecked if none apply - AI will suggest what to add</p>
+                </div>
+
+                <!-- Error Message Display -->
+                <div id="form-error" class="hidden bg-red-50 border-l-4 border-red-500 text-red-700 px-4 py-3 rounded">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        <p id="form-error-text"></p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-4">
+                    <button 
+                        type="submit" 
+                        id="analyze-btn"
+                        {% if user and audits_remaining is not none and audits_remaining == 0 %}
+                        disabled
+                        title="No credits remaining - buy more to continue"
+                        {% endif %}
+                        class="w-full bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {% if user and audits_remaining is not none and audits_remaining == 0 %}
+                            <span>⚠️ Out of Credits - Buy More</span>
+                        {% else %}
+                            <span id="btn-text">🚀 Analyze My Listing</span>
+                            <span id="btn-loading" class="hidden">
+                                <svg class="animate-spin inline-block w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Analyzing Algorithms...
+                            </span>
+                        {% endif %}
+                    </button>
+                    
+                    {% if user and audits_remaining is not none and audits_remaining == 0 %}
+                    <p class="mt-3 text-center">
+                        <a href="/dashboard" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">
+                            Get 100 more audits for $4.99 →
+                        </a>
+                    </p>
+                    {% else %}
+                    <p class="mt-3 text-center text-sm text-slate-500">
+                        🔒 Your data is never stored or shared. Analysis happens in real-time.
+                    </p>
+                    {% endif %}
+                </div>
+            </form>
+        </article>
+
+        <!-- Results Container -->
+        <div id="results-container" class="hidden space-y-8">
+            
+            <!-- Overall Score Card -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="overall-score-card">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Overall Listing Performance</h2>
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="relative w-40 h-40">
+                            <svg class="transform -rotate-90 w-40 h-40">
+                                <circle cx="80" cy="80" r="70" stroke="#e2e8f0" stroke-width="12" fill="none"/>
+                                <circle id="overall-score-circle" cx="80" cy="80" r="70" stroke="#4f46e5" stroke-width="12" fill="none"
+                                        stroke-dasharray="439.6" stroke-dashoffset="439.6" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div id="overall-score-number" class="text-5xl font-bold text-slate-900">0</div>
+                                    <div id="overall-score-label" class="text-sm text-slate-500">Loading...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p id="overall-score-explanation" class="text-slate-700 leading-relaxed text-lg"></p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Detailed Scores Grid -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="detailed-scores-card">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Detailed Performance Metrics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="detailed-scores-grid"></div>
+            </article>
+
+            <!-- Optimized Titles -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="titles-card">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">🔍 Optimized Title Options</h2>
+                <div class="space-y-4" id="titles-list"></div>
+            </article>
+
+            <!-- Description Rewrite -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="description-card">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-slate-900">✍️ Rewritten Description</h2>
+                    <button onclick="copyToClipboard('new-description')" class="text-indigo-600 hover:text-indigo-700 font-semibold text-sm flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        Copy All
+                    </button>
+                </div>
+                <div id="new-description" class="prose prose-slate max-w-none bg-slate-50 p-6 rounded-lg border border-slate-200"></div>
+                <div class="mt-4 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded">
+                    <h3 class="font-bold text-indigo-900 mb-2">💡 Hook Strategy</h3>
+                    <p id="hook-section" class="text-indigo-800 italic"></p>
+                </div>
+                <div class="mt-4">
+                    <h3 class="font-bold text-slate-900 mb-2">Key Improvements:</h3>
+                    <ul id="key-improvements" class="list-disc list-inside space-y-1 text-slate-700"></ul>
+                </div>
+            </article>
+
+            <!-- Amenity Analysis -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="amenities-card">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">💎 High-ROI Amenity Recommendations</h2>
+                <div class="space-y-4" id="amenities-list"></div>
+                
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                    <h3 class="font-bold text-slate-900 mb-4">🔍 Underutilized Current Amenities</h3>
+                    <div id="underutilized-amenities" class="space-y-3"></div>
+                </div>
+            </article>
+
+            <!-- Competitive Insights -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="competitive-card">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">📊 Competitive Market Analysis</h2>
+                <div id="competitive-insights"></div>
+            </article>
+
+            <!-- Immediate Action Items -->
+            <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="action-items-card">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">⚡ Immediate Action Items</h2>
+                <p class="text-slate-600 mb-6">Prioritized tasks to boost your listing performance quickly</p>
+                <div id="action-items-list" class="space-y-4"></div>
+            </article>
+
+            <!-- Local SEO & Psychology -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="local-seo-card">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">📍 Local SEO Opportunities</h2>
+                    <div id="local-seo-content"></div>
+                </article>
+
+                <article class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 opacity-0 transition-opacity duration-500" id="psychology-card">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">🧠 Guest Psychology Insights</h2>
+                    <div id="psychology-content"></div>
+                </article>
+            </div>
+
+            <!-- Critical Warnings (if any) -->
+            <article class="bg-red-50 rounded-2xl shadow-lg border-2 border-red-200 p-8 opacity-0 transition-opacity duration-500 hidden" id="warnings-card">
+                <h2 class="text-2xl font-bold text-red-900 mb-4">⚠️ Critical Warnings</h2>
+                <ul id="warnings-list" class="space-y-2 text-red-800"></ul>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Load app.js ONLY (handles all form submission logic) -->
+<script src="/static/js/app.js"></script>
+{% endblock %}

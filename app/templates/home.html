@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    Free AI-Powered Analysis
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+                    Stop Losing Bookings to <span class="text-indigo-600">Better-Optimized</span> Listings
+                </h1>
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                    Your competitors are using SEO-optimized titles and emotional storytelling. Are you? 
+                    Get a professional AI audit of your Airbnb listing in 30 seconds—discover exactly what's holding you back.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="/audit" class="inline-flex items-center justify-center bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl">
+                        Audit My Listing Free
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                    <a href="#how-it-works" class="inline-flex items-center justify-center bg-white text-slate-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-slate-50 transition border-2 border-slate-200">
+                        See How It Works
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6 text-sm text-slate-600">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        No credit card
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        Results in 30 seconds
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="bg-white rounded-2xl shadow-2xl p-8 border border-slate-200">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-sm font-semibold text-slate-500">LISTING SCORE</span>
+                        <span class="text-sm font-semibold text-green-600">AI Analysis</span>
+                    </div>
+                    <div class="relative w-48 h-48 mx-auto mb-6">
+                        <svg class="transform -rotate-90 w-48 h-48">
+                            <circle cx="96" cy="96" r="88" stroke="#e2e8f0" stroke-width="16" fill="none"/>
+                            <circle cx="96" cy="96" r="88" stroke="#4f46e5" stroke-width="16" fill="none"
+                                    stroke-dasharray="552.92" stroke-dashoffset="138.23" stroke-linecap="round"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-5xl font-bold text-slate-900">87</div>
+                                <div class="text-sm text-slate-500">Example</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-600">SEO Optimization</span>
+                            <span class="font-semibold text-green-600">92%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-600">Emotional Appeal</span>
+                            <span class="font-semibold text-indigo-600">85%</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-slate-600">Amenity Coverage</span>
+                            <span class="font-semibold text-amber-600">78%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research-Backed Stats -->
+<section class="bg-white py-12 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-4xl font-bold text-indigo-600 mb-2">30 sec</div>
+                <div class="text-slate-600">Analysis Time</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold text-indigo-600 mb-2">3</div>
+                <div class="text-slate-600">Optimized Titles</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold text-indigo-600 mb-2">100%</div>
+                <div class="text-slate-600">Free to Try</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold text-indigo-600 mb-2">AI</div>
+                <div class="text-slate-600">Powered Analysis</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-900 mb-4">How OccupancyOS Works</h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                Three simple steps to discover what's preventing your listing from ranking higher
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Step 1 -->
+            <article class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center text-2xl font-bold mb-6">
+                    1
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">Paste Your Listing</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Copy your current Airbnb title and description. Select your property type, target audience, 
+                    and check off your amenities. Takes 60 seconds.
+                </p>
+            </article>
+            
+            <!-- Step 2 -->
+            <article class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center text-2xl font-bold mb-6">
+                    2
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">AI Analyzes Everything</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Advanced AI evaluates your SEO keywords, emotional hooks, storytelling structure, 
+                    and identifies missing amenities that guests actually search for.
+                </p>
+            </article>
+            
+            <!-- Step 3 -->
+            <article class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center text-2xl font-bold mb-6">
+                    3
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">Get Actionable Insights</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Receive 3 optimized title options, a completely rewritten description, and specific 
+                    amenity recommendations. One-click copy. Implement immediately.
+                </p>
+            </article>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="/audit" class="inline-flex items-center bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition shadow-lg">
+                Try Free Analysis Now
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Grid -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-900 mb-4">What You Get</h2>
+            <p class="text-xl text-slate-600">Professional optimization tools without the enterprise price tag</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <article class="p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">SEO Title Generator</h3>
+                <p class="text-slate-600">Get 3 keyword-optimized titles designed to rank higher in Airbnb search and Google</p>
+            </article>
+            
+            <article class="p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Storytelling Description</h3>
+                <p class="text-slate-600">AI rewrites your description using proven Hook → Features → Emotion framework</p>
+            </article>
+            
+            <article class="p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Amenity Gap Analysis</h3>
+                <p class="text-slate-600">Discover which missing amenities could justify premium pricing</p>
+            </article>
+            
+            <article class="p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Listing Score (0-100)</h3>
+                <p class="text-slate-600">See exactly how your listing measures up against optimization best practices</p>
+            </article>
+            
+            <article class="p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Instant Results</h3>
+                <p class="text-slate-600">Complete analysis in 30 seconds. No waiting. No meetings. No complexity.</p>
+            </article>
+            
+            <article class="p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">One-Click Copy</h3>
+                <p class="text-slate-600">Copy optimized content instantly. No manual reformatting needed.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Why Optimization Matters (Education-Based Social Proof) -->
+<section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-900 mb-4">Why Listing Optimization Matters</h2>
+            <p class="text-xl text-slate-600">Industry research shows what works</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <article class="bg-white rounded-xl p-8 shadow-sm">
+                <div class="text-indigo-600 text-5xl font-bold mb-4">47%</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Higher Click-Through Rate</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Airbnb's own data shows listings with "workspace" or "remote work" keywords get nearly 50% more clicks 
+                    from business travelers (Source: Airbnb Host Blog, 2023)
+                </p>
+            </article>
+            
+            <article class="bg-white rounded-xl p-8 shadow-sm">
+                <div class="text-indigo-600 text-5xl font-bold mb-4">3.2x</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Longer Descriptions Win</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Vacation rental research by AllTheRooms found listings with 300+ word descriptions receive 
+                    320% more inquiries than those under 100 words
+                </p>
+            </article>
+            
+            <article class="bg-white rounded-xl p-8 shadow-sm">
+                <div class="text-indigo-600 text-5xl font-bold mb-4">2nd</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Most Searched Filter</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    "Self check-in" is the second most-used search filter on Airbnb. Properties without it 
+                    miss out on significant visibility (Airbnb Search Data, 2024)
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-gradient-to-r from-indigo-600 to-indigo-800 py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+            Find Out What's Holding Your Listing Back
+        </h2>
+        <p class="text-xl text-indigo-100 mb-8">
+            Every day without optimization is a day of lost visibility. Get your free audit now—no credit card, no gimmicks.
+        </p>
+        <a href="/audit" class="inline-flex items-center bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-50 transition shadow-xl">
+            Analyze My Listing in 30 Seconds
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+        </a>
+        <p class="mt-4 text-indigo-200 text-sm">Built by an independent developer • No VC funding • Just good software</p>
+    </div>
+</section>
+{% endblock %}

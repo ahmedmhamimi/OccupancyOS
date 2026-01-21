@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-20 bg-slate-50 min-h-screen flex items-center">
+    <div class="max-w-md mx-auto px-4 w-full">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h1 id="page-heading" class="text-3xl font-bold text-slate-900 mb-2 text-center">Create Account</h1>
+            <p id="page-subheading" class="text-slate-600 text-center mb-8">Start optimizing your Airbnb listings for free</p>
+            
+            <form id="signup-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                    <input type="email" name="email" required 
+                           class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                           placeholder="you@example.com">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                    <input type="password" name="password" required minlength="8"
+                           class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                           placeholder="Minimum 8 characters">
+                    <p class="text-sm text-slate-500 mt-1">At least 8 characters</p>
+                </div>
+                
+                <!-- TOS Checkbox -->
+                <div class="bg-slate-50 border-2 border-slate-200 rounded-lg p-4">
+                    <label class="flex items-start cursor-pointer">
+                        <input type="checkbox" name="tos_accepted" id="tos-checkbox" required
+                               class="mt-1 w-5 h-5 text-indigo-600 border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 flex-shrink-0">
+                        <span class="ml-3 text-sm text-slate-700">
+                            I agree to the 
+                            <a href="/tos" target="_blank" class="text-indigo-600 font-semibold hover:text-indigo-700 underline">Terms of Service</a> 
+                            and 
+                            <a href="/privacy" target="_blank" class="text-indigo-600 font-semibold hover:text-indigo-700 underline">Privacy Policy</a>
+                        </span>
+                    </label>
+                    <p class="text-xs text-slate-500 mt-2 ml-8">By checking this box, you acknowledge that you have read and agree to our terms, including service termination rights, no refund policy, and liability limitations.</p>
+                </div>
+                
+                <div id="error-message" class="hidden bg-red-50 border-l-4 border-red-500 text-red-700 px-4 py-3 rounded text-sm"></div>
+                <div id="success-message" class="hidden bg-green-50 border-l-4 border-green-500 text-green-700 px-4 py-3 rounded text-sm"></div>
+                
+                <button type="submit" id="signup-btn"
+                        class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span id="signup-text">Create Account</span>
+                    <span id="signup-loading" class="hidden">
+                        <svg class="animate-spin inline-block w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Creating Account...
+                    </span>
+                </button>
+            </form>
+            
+            <p class="text-center text-slate-600 mt-6">
+                Already have an account? <a href="/login" class="text-indigo-600 font-semibold hover:text-indigo-700">Log in</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const btn = document.getElementById('signup-btn');
+    const btnText = document.getElementById('signup-text');
+    const btnLoading = document.getElementById('signup-loading');
+    const errorMsg = document.getElementById('error-message');
+    const successMsg = document.getElementById('success-message');
+    const pageHeading = document.getElementById('page-heading');
+    const pageSubheading = document.getElementById('page-subheading');
+    const tosCheckbox = document.getElementById('tos-checkbox');
+    
+    // Validate TOS checkbox
+    if (!tosCheckbox.checked) {
+        errorMsg.innerHTML = `
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+                <p>You must agree to the Terms of Service and Privacy Policy to create an account.</p>
+            </div>
+        `;
+        errorMsg.classList.remove('hidden');
+        tosCheckbox.focus();
+        return;
+    }
+    
+    // Hide previous messages
+    errorMsg.classList.add('hidden');
+    successMsg.classList.add('hidden');
+    
+    // Disable button
+    btn.disabled = true;
+    btnText.classList.add('hidden');
+    btnLoading.classList.remove('hidden');
+    
+    const formData = new FormData(e.target);
+    
+    try {
+        const response = await fetch('/api/signup', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Update page heading
+            pageHeading.textContent = '📧 Check Your Inbox';
+            pageSubheading.textContent = 'Almost done! One more step to activate your account.';
+            
+            // Show prominent success message with email confirmation instructions
+            successMsg.innerHTML = `
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <div>
+                        <p class="font-bold text-lg mb-2">🎉 Account Created Successfully!</p>
+                        <p class="mb-3">${data.message}</p>
+                        <div class="bg-white border-2 border-green-300 rounded-lg p-4 mb-3">
+                            <p class="font-semibold text-green-900 mb-2 text-base">📧 Check Your Email Inbox</p>
+                            <p class="text-sm text-green-800 mb-2">We sent a confirmation link to:</p>
+                            <p class="font-mono text-sm bg-green-100 px-3 py-2 rounded border border-green-200 mb-3"><strong>${formData.get('email')}</strong></p>
+                            <div class="bg-green-50 border-l-4 border-green-500 p-3 mb-2">
+                                <p class="text-sm text-green-800 font-semibold mb-1">✓ Click the confirmation link in the email</p>
+                                <p class="text-sm text-green-700">✓ Then come back and log in</p>
+                            </div>
+                            <p class="text-xs text-green-700 mt-2">💡 Can't find it? Check your spam/junk folder</p>
+                        </div>
+                        <p class="text-sm text-green-700">Redirecting to login page in <span id="countdown">15</span> seconds...</p>
+                    </div>
+                </div>
+            `;
+            successMsg.classList.remove('hidden');
+            
+            // Hide form
+            document.getElementById('signup-form').style.display = 'none';
+            
+            // Countdown redirect
+            let seconds = 15;
+            const countdownEl = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                seconds--;
+                if (countdownEl) countdownEl.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    window.location.href = '/login';
+                }
+            }, 1000);
+        } else {
+            errorMsg.innerHTML = `
+                <div class="flex items-start">
+                    <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                    </svg>
+                    <p>${data.error || 'Signup failed. Please try again.'}</p>
+                </div>
+            `;
+            errorMsg.classList.remove('hidden');
+            
+            // Re-enable button
+            btn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnLoading.classList.add('hidden');
+        }
+    } catch (error) {
+        errorMsg.innerHTML = `
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+                <p>Network error. Please check your connection and try again.</p>
+            </div>
+        `;
+        errorMsg.classList.remove('hidden');
+        
+        // Re-enable button
+        btn.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+    }
+});
+</script>
+{% endblock %}
