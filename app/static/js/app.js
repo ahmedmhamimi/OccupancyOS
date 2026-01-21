@@ -31,7 +31,7 @@ async function handleAuditSubmit(e) {
         if (currentCredits <= 0) {
             console.log('❌ Blocking - no credits');
             if (formErrorText) {
-                formErrorText.innerHTML = '<p class="font-semibold mb-1">Out of credits!</p><p class="text-sm mb-2">Get 100 more for $4.99</p><a href="https://occupancyos.gumroad.com/l/credits" target="_blank" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700">Buy Now</a>';
+                formErrorText.innerHTML = '<p class="font-semibold mb-1">Out of credits!</p><p class="text-sm mb-2">Get 100 more for $4.99</p><a href="https://mhamimi.gumroad.com/l/bvvgf" target="_blank" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700">Buy Now</a>';
             }
             if (formError) {
                 formError.classList.remove('hidden');
@@ -124,7 +124,7 @@ async function handleAuditSubmit(e) {
             if (data.login_required) {
                 errorMsg = '<p>Please log in. <a href="/signup" class="underline">Sign up</a> or <a href="/login" class="underline">Log in</a></p>';
             } else if (data.upgrade_required) {
-                errorMsg = '<p>Out of credits! <a href="https://occupancyos.gumroad.com/l/credits" target="_blank" class="underline font-semibold">Buy 100 for $4.99 →</a></p>';
+                errorMsg = '<p>Out of credits! <a href="https://mhamimi.gumroad.com/l/bvvgf" target="_blank" class="underline font-semibold">Buy 100 for $4.99 →</a></p>';
             }
             
             if (formErrorText) formErrorText.innerHTML = errorMsg;
@@ -163,7 +163,7 @@ function updateButtonState() {
             warningDiv = document.createElement('p');
             warningDiv.id = 'credits-warning';
             warningDiv.className = 'mt-3 text-center';
-            warningDiv.innerHTML = '<span class="text-red-600 font-semibold">No credits</span> • <a href="https://occupancyos.gumroad.com/l/credits" target="_blank" class="text-indigo-600 underline font-semibold">Get 100 for $4.99</a>';
+            warningDiv.innerHTML = '<span class="text-red-600 font-semibold">No credits</span> • <a href="https://mhamimi.gumroad.com/l/bvvgf" target="_blank" class="text-indigo-600 underline font-semibold">Get 100 for $4.99</a>';
             submitBtn.parentElement.appendChild(warningDiv);
         }
     } else {
